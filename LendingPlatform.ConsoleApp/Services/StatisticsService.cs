@@ -4,30 +4,30 @@ namespace LendingPlatform.ConsoleApp.Services;
 
 public class StatisticsService(ILoanRepository loanRepository)
 {
-    private Dictionary<bool, int> TotalNumberOfApplicationsBySuccessStatus => loanRepository.GetLoanApplications()
-        .GroupBy(x => x.LoanApproved)
-        .ToDictionary(g => g.Key, g => g.Count());
-
-    private decimal TotalNumberOfLoansWrittenToDate => loanRepository.GetLoanApplications()
-        .Where(x => x.LoanApproved)
-        .Sum(x => x.LoanAmount);
-
-    private decimal MeanLoanToValueRatio =>
-        loanRepository.GetLoanApplications()
-            .Average(x => x.LoanToValuePercent);
-    
-
     public (int numberOfApprovedLoans, int numberOfDeclinedLoans, decimal totalValueOfLoansWritten, string meanAverageLoadToValueRatio) GetStatistics()
     {
-        if (TotalNumberOfApplicationsBySuccessStatus.Count == 0)
+        var applications = loanRepository.GetLoanApplications().ToList();
+        
+        if (applications.Count == 0)
         {
             return (0, 0, 0, "0.00");
         }
+
+        var applicationsByStatus = applications
+            .GroupBy(x => x.LoanApproved)
+            .ToDictionary(g => g.Key, g => g.Count());
+
+        var totalLoansWritten = applications
+            .Where(x => x.LoanApproved)
+            .Sum(x => x.LoanAmount);
+
+        var meanLtv = applications.Average(x => x.LoanToValuePercent);
+
         return (
-            TotalNumberOfApplicationsBySuccessStatus.GetValueOrDefault(true, 0),
-            TotalNumberOfApplicationsBySuccessStatus.GetValueOrDefault(false, 0),
-            TotalNumberOfLoansWrittenToDate,
-            MeanLoanToValueRatio.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)
+            applicationsByStatus.GetValueOrDefault(true, 0),
+            applicationsByStatus.GetValueOrDefault(false, 0),
+            totalLoansWritten,
+            meanLtv.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)
         );
     }
 
