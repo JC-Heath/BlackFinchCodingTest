@@ -6,6 +6,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{86E0F97E-956
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LendingPlatform.ConsoleApp", "LendingPlatform.ConsoleApp\LendingPlatform.ConsoleApp.csproj", "{BB6A205E-3BF9-4802-8EDC-755A4509C8E6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{99C0B255-5941-40ED-9CB3-C51B63278A7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LendingPlatform.Tests", "LendingPlatform.Tests\LendingPlatform.Tests.csproj", "{BF11A3B6-6A56-45A3-96E8-16C0662454B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,11 +18,17 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{86E0F97E-9565-4801-B3CC-7646A1F32852} = {1C7A1ED1-4BDB-4809-A1FF-4390D948658E}
 		{BB6A205E-3BF9-4802-8EDC-755A4509C8E6} = {86E0F97E-9565-4801-B3CC-7646A1F32852}
+		{99C0B255-5941-40ED-9CB3-C51B63278A7F} = {1C7A1ED1-4BDB-4809-A1FF-4390D948658E}
+		{BF11A3B6-6A56-45A3-96E8-16C0662454B6} = {99C0B255-5941-40ED-9CB3-C51B63278A7F}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BB6A205E-3BF9-4802-8EDC-755A4509C8E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BB6A205E-3BF9-4802-8EDC-755A4509C8E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB6A205E-3BF9-4802-8EDC-755A4509C8E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB6A205E-3BF9-4802-8EDC-755A4509C8E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF11A3B6-6A56-45A3-96E8-16C0662454B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF11A3B6-6A56-45A3-96E8-16C0662454B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF11A3B6-6A56-45A3-96E8-16C0662454B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF11A3B6-6A56-45A3-96E8-16C0662454B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
