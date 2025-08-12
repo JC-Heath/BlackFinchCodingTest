@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LendingPlatform", "LendingPlatform", "{1C7A1ED1-4BDB-4809-A1FF-4390D948658E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{86E0F97E-9565-4801-B3CC-7646A1F32852}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LendingPlatform.ConsoleApp", "LendingPlatform.ConsoleApp\LendingPlatform.ConsoleApp.csproj", "{BB6A205E-3BF9-4802-8EDC-755A4509C8E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{86E0F97E-9565-4801-B3CC-7646A1F32852} = {1C7A1ED1-4BDB-4809-A1FF-4390D948658E}
+		{BB6A205E-3BF9-4802-8EDC-755A4509C8E6} = {86E0F97E-9565-4801-B3CC-7646A1F32852}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB6A205E-3BF9-4802-8EDC-755A4509C8E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB6A205E-3BF9-4802-8EDC-755A4509C8E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB6A205E-3BF9-4802-8EDC-755A4509C8E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB6A205E-3BF9-4802-8EDC-755A4509C8E6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
