@@ -13,7 +13,10 @@ Console.WriteLine("Press i to input a new loan application...");
 // TODO: Would refactor into CQRS for readability..
 do
 {
-    switch (Console.ReadKey(true).KeyChar)
+    var input = Console.ReadLine()?.Trim().ToLower();
+    if (string.IsNullOrEmpty(input)) continue;
+    
+    switch (input[0])
     {
         case 'q':
             Console.WriteLine("Exiting the application. Goodbye!");
