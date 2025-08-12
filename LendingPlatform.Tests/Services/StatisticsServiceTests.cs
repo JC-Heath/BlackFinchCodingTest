@@ -49,7 +49,7 @@ public class StatisticsServiceTests
         // Assert
         approved.Should().Be(2);
         declined.Should().Be(2);
-        total.Should().Be(2500000); // Sum of all loan amounts
+        total.Should().Be(900000); // Sum of only approved loan amounts (500k + 400k)
         mean.Should().Be("54.17"); // Average LTV: (50 + 40 + 60 + 66.67) / 4 = 54.17
     }
 
@@ -97,7 +97,7 @@ public class StatisticsServiceTests
         // Assert
         approved.Should().Be(0);
         declined.Should().Be(2);
-        total.Should().Be(2050000); // Sum includes all loan amounts, even declined ones
+        total.Should().Be(0); // No approved loans, so total should be 0
         mean.Should().Be("102.50"); // (5 + 200) / 2 = 102.5
     }
 
@@ -121,7 +121,7 @@ public class StatisticsServiceTests
         // Assert
         result.NumberOfApprovedLoans.Should().Be(1);
         result.NumberOfDeclinedLoans.Should().Be(1);
-        result.TotalValueOfLoansWritten.Should().Be(800000);
+        result.TotalValueOfLoansWritten.Should().Be(500000); // Only approved loan amount
         result.MeanAverageLoanToValueRatio.Should().Be("40.00");
     }
 
@@ -159,9 +159,9 @@ public class StatisticsServiceTests
         // Arrange
         var applications = new List<LoanApplication>
         {
-            new(1000000, 3000000, 950),   // LTV 33.33%
-            new(1500000, 2250000, 950),   // LTV 66.67% - should be declined for large loan
-            new(999999, 3000000, 900),    // LTV 33.33% - small loan, approved
+            new(1000000, 3000000, 950),   // Approved - Large loan, LTV 33.33%, credit 950
+            new(1500000, 2250000, 950),   // Declined - Large loan, LTV 66.67% (exceeds 60% limit)
+            new(999999, 3000000, 900),    // Approved - Small loan, LTV 33.33%, credit 900
         };
 
         var mockRepository = Substitute.For<ILoanRepository>();
@@ -174,7 +174,7 @@ public class StatisticsServiceTests
         // Assert
         approved.Should().Be(2);
         declined.Should().Be(1);
-        total.Should().Be(3499999);
+        total.Should().Be(1999999); // Sum of only approved loans (1,000,000 + 999,999)
         // Mean LTV should be calculated correctly with proper rounding
         mean.Should().MatchRegex(@"\d+\.\d{2}");
     }

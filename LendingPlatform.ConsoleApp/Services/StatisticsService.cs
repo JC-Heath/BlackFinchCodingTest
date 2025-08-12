@@ -8,7 +8,9 @@ public class StatisticsService(ILoanRepository loanRepository)
         .GroupBy(x => x.LoanApproved)
         .ToDictionary(g => g.Key, g => g.Count());
 
-    private decimal TotalNumberOfLoansWrittenToDate => loanRepository.GetLoanApplications().Sum(x => x.LoanAmount);
+    private decimal TotalNumberOfLoansWrittenToDate => loanRepository.GetLoanApplications()
+        .Where(x => x.LoanApproved)
+        .Sum(x => x.LoanAmount);
 
     private decimal MeanLoanToValueRatio =>
         loanRepository.GetLoanApplications()
