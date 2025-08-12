@@ -17,7 +17,7 @@ public class StatisticsService(ILoanRepository loanRepository)
             .Average(x => x.LoanToValuePercent);
     
 
-    public (int numberOfApprovedLoans, int numberOfDeclinedLoans, int totalValueOfLoansWritten, string meanAverageLoadToValueRatio) GetStatistics()
+    public (int numberOfApprovedLoans, int numberOfDeclinedLoans, decimal totalValueOfLoansWritten, string meanAverageLoadToValueRatio) GetStatistics()
     {
         if (TotalNumberOfApplicationsBySuccessStatus.Count == 0)
         {
@@ -26,7 +26,7 @@ public class StatisticsService(ILoanRepository loanRepository)
         return (
             TotalNumberOfApplicationsBySuccessStatus.GetValueOrDefault(true, 0),
             TotalNumberOfApplicationsBySuccessStatus.GetValueOrDefault(false, 0),
-            (int)TotalNumberOfLoansWrittenToDate,
+            TotalNumberOfLoansWrittenToDate,
             MeanLoanToValueRatio.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)
         );
     }
@@ -35,7 +35,7 @@ public class StatisticsService(ILoanRepository loanRepository)
     {
         public int NumberOfApprovedLoans { get; set; }
         public int NumberOfDeclinedLoans { get; set; }
-        public int TotalValueOfLoansWritten { get; set; }
+        public decimal TotalValueOfLoansWritten { get; set; }
         public string MeanAverageLoanToValueRatio { get; set; } = "0.00";
     }
 
